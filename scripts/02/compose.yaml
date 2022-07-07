@@ -1,0 +1,25 @@
+services:
+  # Aplicação em Java
+  app:
+    build:
+      context: ./app
+    working_dir: /app
+    volumes:
+      - ./app:/usr/src/app
+    env_file:
+      - app.env
+    depends_on:
+      - db
+
+  # Banco de Dados
+  db:
+    image: mariadb:10.7
+    volumes:
+      - dbVolume:/var/lib/mysql
+      - ./db/:/docker-entrypoint-initdb.d/ # https://github.com/dalers/mywind
+    env_file:
+      - db.env
+
+volumes:
+  dbVolume:
+    driver: local
