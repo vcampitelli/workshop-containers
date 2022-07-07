@@ -1,0 +1,1368 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="copyright" content="Let's Code">
+        <meta name="author" content="Vinícius Campitelli, eu@viniciuscampitelli.com">
+
+        <title>Conteinerização</title>
+
+        <link rel="stylesheet" href="reveal.js/dist/reset.css">
+        <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+        <link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.3/styles/dracula.min.css"
+              integrity="sha512-UPcL+5Ec/OV1+OGGgpK9ZS1NLz/sXczHAYUkSaSMQjgIYufontU+rYGAkK9B//Oze4cFTLfLnzNtsI+cG2FwjQ=="
+              crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Montserrat:wght@300;400;500&display=swap"
+              rel="stylesheet">
+        <link rel="stylesheet" href="css/letscode.css">
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <div id="intro">
+                        <h1>Conteinerização</h1>
+                        <h2>LET'S CODE</h2>
+                    </div>
+                </section>
+
+                <section> <!-- Preparação -->
+                    <section>
+                        <h2>Preparação</h2>
+                    </section>
+                    <section>
+                        <h2 class="subtitle">Preparação</h2>
+                        <h3>Acompanhamento do Workshop</h3>
+                        <p>
+                            Clone esse repositório do GitHub para acompanhar os slides e executar os <em>scripts</em>
+                            que serão demonstrados
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ git clone --recurse-sobmodules \
+                                git@github.com:vcampitelli/workshop-containers.git
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2 class="subtitle">Preparação</h2>
+                        <h3>Instalação do Docker</h3>
+                        <ul>
+                            <li>
+                                Instale o Docker de acordo com seu sistema operacional em
+                                <a href="https://docs.docker.com/get-docker/" target="_blank" rel="noopener">
+                                    docs.docker.com/get-docker
+                                </a>
+                            </li>
+                            <li>
+                                Instale o Docker Compose de acordo com seu sistema operacional em
+                                <a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener">
+                                    docs.docker.com/compose/install
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </section> <!-- Preparação -->
+
+                <section> <!-- Sobre mim -->
+                    <section data-auto-animate>
+                        <h2>Sobre mim</h2>
+                        <div class="d-flex justify-around">
+                            <div class="text-center">
+                                <img src="img/vinicius.jpg" alt="Vinícius Campitelli" id="profile-pic">
+                                <h4>Vinícius Campitelli</h4>
+                            </div>
+                            <ul>
+                                <li>
+                                    Membro do <a href="https://phpsp.org.br" target="_blank" rel="noopener">PHPSP</a>
+                                </li>
+                                <li>Entusiasta em cibersegurança</li>
+                                <li>Desenvolvedor há 15 anos</li>
+                                <li>
+                                    Instrutor na
+                                    <a href="https://letscode.com.br" target="_blank" rel="noopener">Let's Code</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Sobre mim</h2>
+                        <div class="d-flex about-me-links justify-between">
+                            <div>
+                                <svg role="img" width="64px" height="64px" viewBox="0 0 24 24"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                                          class="fill"></path>
+                                </svg>
+                                <p>GitHub</p>
+                                <a href="https://github.com/vcampitelli" target="_blank" rel="noopener">
+                                    vcampitelli
+                                </a>
+                            </div>
+                            <div>
+                                <svg role="img" width="64px" height="64px" viewBox="0 0 24 24"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"
+                                          class="fill"></path>
+                                </svg>
+                                <p>Twitter</p>
+                                <a href="https://twitter.com/vcampitelli" target="_blank" rel="noopener">
+                                    vcampitelli
+                                </a>
+                            </div>
+                            <div>
+                                <svg height="64" viewBox="0 0 74 74" width="64" xmlns="http://www.w3.org/2000/svg">
+                                    <g fill="none" fill-rule="evenodd">
+                                        <path d="M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,-8.11624501e-16 64,0 L8,0 C3.581722,8.11624501e-16 -5.41083001e-16,3.581722 0,8 L0,64 C5.41083001e-16,68.418278 3.581722,72 8,72 Z"
+                                              class="fill"/>
+                                        <path d="M62,62 L51.315625,62 L51.315625,43.8021149 C51.315625,38.8127542 49.4197917,36.0245323 45.4707031,36.0245323 C41.1746094,36.0245323 38.9300781,38.9261103 38.9300781,43.8021149 L38.9300781,62 L28.6333333,62 L28.6333333,27.3333333 L38.9300781,27.3333333 L38.9300781,32.0029283 C38.9300781,32.0029283 42.0260417,26.2742151 49.3825521,26.2742151 C56.7356771,26.2742151 62,30.7644705 62,40.051212 L62,62 Z M16.349349,22.7940133 C12.8420573,22.7940133 10,19.9296567 10,16.3970067 C10,12.8643566 12.8420573,10 16.349349,10 C19.8566406,10 22.6970052,12.8643566 22.6970052,16.3970067 C22.6970052,19.9296567 19.8566406,22.7940133 16.349349,22.7940133 Z M11.0325521,62 L21.769401,62 L21.769401,27.3333333 L11.0325521,27.3333333 L11.0325521,62 Z"
+                                              class="fill-fg"/>
+                                    </g>
+                                </svg>
+                                <p>LinkedIn</p>
+                                <a href="https://linkedin.com/in/viniciuscampitelli" target="_blank" rel="noopener">
+                                    Vinícius Campitelli
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </section> <!-- Sobre mim -->
+
+                <section> <!-- História do desenvolvimento -->
+                    <section>
+                        <h2>Histórico do Desenvolvimento</h2>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Direto na máquina física</h3>
+                        <p>
+                            Instalando as ferramentas necessárias da linguagem direto em nossa máquina <em>(exemplo:
+                            PHP, Java)</em>, as dependências envolvidas <em>(bibliotecas e ferramentas)</em> e suas
+                            configurações
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Direto na máquina física</h3>
+                        <p>Problemas:</p>
+                        <ul>
+                            <li class="fragment">
+                                Projetos diferentes podem requisitar versões e configurações diferentes de linguagens,
+                                bibliotecas e até mesmo do Sistema Operacional
+                            </li>
+                            <li class="fragment">
+                                Compartilhar o código para que outras pessoas te ajudem é trabalhoso
+                            </li>
+                            <li class="fragment">
+                                Instalar a aplicação em um ambiente de produção real é ainda mais complexo
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Máquinas Virtuais</h3>
+                        <blockquote>
+                            Uma máquina virtual ou <em>virtual machine</em> (VM) é um ambiente virtualizado que funciona
+                            como um sistema de computação com sua própria CPU, memória, interface de rede e
+                            armazenamento. Um software chamado hipervisor separa do hardware os recursos utilizados pela
+                            máquina virtual e os provisiona adequadamente.
+                        </blockquote>
+                        <a href="https://www.redhat.com/pt-br/topics/virtualization/what-is-a-virtual-machine"
+                           class="reference" target="_blank" rel="noopener" data-id="reference-redhat">
+                            Red Hat
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Máquinas Virtuais</h3>
+                        <blockquote>
+                            A máquina física onde o hipervisor está instalado é chamada de host. As VMs que usam os
+                            recursos da máquina host são chamadas de guest. O hipervisor trata os recursos de computação
+                            (por exemplo, CPU, memória e armazenamento) como um pool que pode ser realocado com
+                            facilidade entre os guests existentes ou para novas máquinas virtuais.
+                        </blockquote>
+                        <a href="https://www.redhat.com/pt-br/topics/virtualization/what-is-a-virtual-machine"
+                           class="reference" target="_blank" rel="noopener" data-id="reference-redhat">
+                            Red Hat
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Máquinas Virtuais</h3>
+                        <blockquote>
+                            As máquinas virtuais são isoladas do restante do sistema, e várias delas podem coexistir
+                            em um único hardware, como um servidor. Dependendo da demanda, é possível migrá-las entre
+                            servidores host ou distribuir os recursos de maneira mais eficiente.
+                        </blockquote>
+                        <a href="https://www.redhat.com/pt-br/topics/virtualization/what-is-a-virtual-machine"
+                           class="reference" target="_blank" rel="noopener" data-id="reference-redhat">
+                            Red Hat
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Máquinas Virtuais</h3>
+                        <img src="img/vm.png" alt="Representação de VMs" class="r-stretch"> <br>
+                        <a href="https://azure.microsoft.com/pt-br/resources/cloud-computing-dictionary/what-is-a-virtual-machine/#overview"
+                           class="reference" target="_blank" rel="noopener" data-id="reference-redhat">
+                            Microsoft Azure
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Máquinas Virtuais</h3>
+                        <p>Vantagens:</p>
+                        <ul>
+                            <li class="fragment">
+                                A separação entre máquina <em>host</em> e <em>guest</em> faz com que seja possível
+                                instalar e configurar separadamente diversos serviços
+                            </li>
+                            <li class="fragment">
+                                Maior segurança, pois cada aplicação está rodando em um ambiente virtualizado e agentes
+                                maliciosos não conseguem acesso à máquina física
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Máquinas Virtuais</h3>
+                        <p>Problemas:</p>
+                        <ul>
+                            <li class="fragment">
+                                Alto consumo de recursos da máquina devido à necessidade de ter vários Sistemas
+                                Operacionais rodando
+                            </li>
+                            <li class="fragment">
+                                Performance ruim da máquina como um todo - e principalmente no compartilhamento de
+                                arquivos para execução dos serviços
+                            </li>
+                            <li class="fragment">
+                                O arquivo gerado para compartilhar as aplicações é geralmente gigantesco
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Containers</h3>
+                        <blockquote>
+                            Os contêineres são unidades executáveis de software nas quais o código do aplicativo é
+                            empacotado, junto às suas bibliotecas e dependências, de maneira semelhante para que possa
+                            ser executado em qualquer lugar, seja no desktop, na estrutura de TI tradicional ou na
+                            cloud.
+                        </blockquote>
+                        <a href="https://www.ibm.com/br-pt/cloud/learn/containers" class="reference" target="_blank"
+                           rel="noopener">
+                            IBM
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Containers</h3>
+                        <blockquote>
+                            Para isso, os contêineres utilizam um tipo de virtualização de sistema operacional (S.O.) na
+                            qual os recursos do S.O. (no caso do kernel do Linux, os namespaces e as primitivas de
+                            cgroups) são usados para ambos os processos isolados a fim de controlar a quantia de CPU, de
+                            memória e de disco à qual esses processos têm acesso.
+                        </blockquote>
+                        <a href="https://www.ibm.com/br-pt/cloud/learn/containers" class="reference" target="_blank"
+                           rel="noopener">
+                            IBM
+                        </a>
+                    </section>
+                    <section>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Máquinas Virtuais vs Containers</h3>
+                        <img src="img/docker-vs-vm.png" alt="Representação da VM">
+                        <a href="https://www.tayfundeger.com/docker-mi-vmware-mi.html"
+                           class="reference" target="_blank" rel="noopener" data-id="reference-redhat">
+                            tayfundeger.com
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Containers</h3>
+                        <h4>LXC</h4>
+                        <blockquote>
+                            Lançado em agosto de 2008, Linux Containers (LXC) é um método de virtualização em nível
+                            de sistema operacional para executar vários sistemas Linux isolados (containers) em um
+                            host de controle usando um único kernel Linux.
+                        </blockquote>
+                        <a href="https://en.wikipedia.org/wiki/LXC" class="reference" target="_blank" rel="noopener">
+                            Wikipédia
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Containers</h3>
+                        <h4>LXC</h4>
+                        <p>Vantagens:</p>
+                        <ul>
+                            <li class="fragment">
+                                Performance muito maior pela inexistência de Sistemas Operacionais para cada
+                                <em>guest</em>
+                            </li>
+                            <li class="fragment">
+                                Maior facilidade de compartilhar aplicações através da geração de imagens, que são
+                                uma representação da "receita" para criação daquele <em>container</em>
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Containers</h3>
+                        <h4>LXC</h4>
+                        <p>Problemas:</p>
+                        <ul>
+                            <li class="fragment">
+                                Mesmo com a criação de LXD, uma camada para facilitar o uso do LXC, o manuseio ainda é
+                                difícil e requer um alto grau de conhecimento de seu funcionamento
+                            </li>
+                            <li class="fragment">
+                                O compartilhamento de aplicações ainda é complexo, pois as configurações do
+                                <em>hardware</em> de cada imagem está relacionado à máquina física
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Containers</h3>
+                        <h4>Docker</h4>
+                        <blockquote>
+                            Docker is an open platform for developing, shipping, and running applications.
+                        </blockquote>
+                        <a href="https://docs.docker.com/get-docker/" class="reference" target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Containers</h3>
+                        <h4>Docker</h4>
+                        <p>
+                            É uma plataforma completa para criação e gerenciamento de <em>containers</em> Linux, criando
+                            abstrações dos recursos físicos do <em>hardware</em> para melhor compartilhamento e execução
+                            em ambientes distintos
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Histórico do Desenvolvimento</h2>
+                        <h3>Containers</h3>
+                        <h4>Docker</h4>
+                        <img src="img/lxc-vs-docker.png" alt="LXC vs Docker">
+                        <a href="https://www.redhat.com/pt-br/topics/containers/what-is-docker" class="reference"
+                           target="_blank" rel="noopener">
+                            Red Hat
+                        </a>
+                    </section>
+                </section> <!-- História do desenvolvimento -->
+
+                <section> <!-- Recursos -->
+                    <section>
+                        <h2>Recursos</h2>
+                    </section>
+                    <section> <!-- Uso de recursos -->
+                        <h2>Uso de recursos</h2>
+                        <p>Por padrão, o Docker irá usar o máximo de memória disponível pelo Sistema Operacional</p>
+                        <p>
+                            Para garantir que não haja um erro de <em>Out-Of-Memory</em>, pode ser importante limitar o
+                            uso de memória ao criar novos <em>containers</em>
+                        </p>
+                        <a href="https://docs.docker.com/config/containers/resource_constraints/" class="reference"
+                           target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section> <!-- Uso de recursos -->
+
+                    <section> <!-- Volumes -->
+                        <h2>Volumes</h2>
+                        <p>
+                            Mecanismo utilizado para disponibilizar arquivos ou diretórios inteiros do <em>host</em>
+                            dentro dos <em>containers</em>
+                        </p>
+                        <a href="https://docs.docker.com/storage/volumes/" class="reference" target="_blank"
+                           rel="noopener">
+                            docs.docker.com/storage
+                        </a>
+                    </section> <!-- Volumes -->
+
+                    <section> <!-- Rede -->
+                        <h2>Rede</h2>
+                        <p>
+                            É possível configurar um <em>container</em> para que ele se comporte como um outro
+                            dispositivo em sua rede ou, no modo padrão e mais recomendado, que você exporte portas que
+                            estão rodando dentro do <em>container</em> para o <em>host</em>
+                        </p>
+                        <a href="https://docs.docker.com/network/" class="reference" target="_blank" rel="noopener">
+                            docs.docker.com/network
+                        </a>
+                    </section> <!-- Rede -->
+                </section> <!-- Recursos -->
+
+                <section> <!-- Principais comandos -->
+                    <section>
+                        <h2>Principais comandos</h2>
+                    </section>
+                    <section> <!-- ps -->
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker ps</code></h3>
+                        <p>Lista os <em>containers</em> que estão em execução</p>
+                        <pre><code class="shell" data-trim>
+                                $ docker ps
+                                CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+                            </code></pre>
+                        <p>
+                            Informe o parâmetro <code>-a</code> para listar todos os <em>containers</em>, inclusive os
+                            parados
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker ps -a
+                            CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                      PORTS     NAMES
+                            cd954dec23d0   hello-world   "/hello"   11 minutes ago   Exited (0) 11 minutes ago             frosty_nightingale
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/ps/" class="reference"
+                           target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section> <!-- ps -->
+
+                    <section> <!-- images -->
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker images</code></h3>
+                        <p>
+                            Lista as imagens disponíveis localmente, que são as "receitas" utilizadas para configurar
+                            <em>containers</em>
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker images
+                            REPOSITORY   TAG         IMAGE ID       CREATED       SIZE
+                            php          8.1-cli     56b3ddeba8af   3 weeks ago   92.1MB
+                            node         18          c4f3fb5f722f   4 weeks ago   172MB
+                            debian       latest      4eacea30377a   5 weeks ago   124MB
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/images/" class="reference"
+                           target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section> <!-- images -->
+
+                    <section data-auto-animate> <!-- build -->
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker build</code></h3>
+                        <p>
+                            Cria uma nova imagem a partir das informações provenientes do <code>Dockerfile</code>
+                            <em>(que iremos ver em breve)</em>
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker build .
+                            Sending build context to Docker daemon    105kB
+                            Step 1/5 : FROM node:18-alpine
+                             ---> c4f3fb5f722f
+                            Step 2/5 : WORKDIR /app
+                             ---> c1829ed5a713
+                            Step 3/5 : COPY . .
+                             ---> 6e8d941cebb3
+                            Step 4/5 : RUN npm install
+                             ---> Running in eb7561cda394
+                            Removing intermediate container eb7561cda394
+                             ---> 18d0cbbb1c07
+                             ---> d59ad3ba42d0
+                            Step 6/5 : CMD ["npm", "start"]
+                             ---> Running in c4b0e26044a1
+                            Removing intermediate container c4b0e26044a1
+                             ---> df6a836541d6
+                            Successfully built df6a836541d6
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/build/" class="reference"
+                           target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker build</code></h3>
+                        <p>
+                            No exemplo anterior, a imagem <code>df6a836541d6</code> foi criada, o que é uma
+                            identificação não muito usável para um ser humano
+                        </p>
+                        <p>
+                            Nesses casos, podemos criar uma <em>tag</em> para aquela imagem, dando um nome mais
+                            significativo a ela:
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker build -t nome-da-imagem:versao .
+                        </code></pre>
+                        <p>Para criar uma <em>tag</em> em uma imagem já existente, use o comando:</p>
+                        <pre><code class="shell" data-trim>
+                            $ docker image tag df6a836541d6 nome-da-imagem:versao
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/build/" class="reference"
+                           target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section> <!-- build -->
+
+                    <section data-auto-animate data-auto-animate-restart> <!-- run -->
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker run</code></h3>
+                        <p>
+                            Cria um <em>container</em> a partir da imagem especificada, executa o comando passado (ou o
+                            padrão da imagem) e para o <em>container</em> após o término do comando
+                        </p>
+                        <pre data-id="pre"><code class="shell" data-trim>
+                            $ docker run hello-world
+                            Unable to find image 'hello-world:latest' locally
+                            latest: Pulling from library/hello-world
+                            2db29710123e: Pull complete
+                            Digest: sha256:13e367d31ae85359f42d637adf6da428f76d75dc9afeb3c21faea0d976f5c651
+                            Status: Downloaded newer image for hello-world:latest
+
+                            Hello from Docker!
+                            This message shows that your installation appears to be working correctly.
+
+                            ...
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/run/" class="reference"
+                           target="_blank" rel="noopener" data-id="reference">
+                            docs.docker.com
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker run</code></h3>
+                        <p>
+                            Cria um <em>container</em> a partir da imagem especificada, executa o comando passado (ou o
+                            padrão da imagem) e para o <em>container</em> após o término do comando
+                        </p>
+                        <pre data-id="pre"><code class="shell" data-trim>
+                            $ docker ps
+                            CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+                            $ docker run debian cat /etc/debian_version
+                            11.3
+
+                            $ docker ps
+                            CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/run/" class="reference"
+                           target="_blank" rel="noopener" data-id="reference">
+                            docs.docker.com
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker run</code></h3>
+                        <p>
+                            Após o término da execução, o <em>container</em> ficará parado, podendo ser visto ao
+                            executar <code>docker ps -a</code> e até mesmo reiniciado
+                        </p>
+                        <p>
+                            Se quiser executar o comando do <em>container</em> e exclui-lo automaticamente ao final,
+                            informe o parâmetro <code>--rm</code>:
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker run --rm hello-world
+
+                            Hello from Docker!
+                            This message shows that your installation appears to be working correctly.
+
+                            ...
+
+                            $ docker ps -a
+                            CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+                        </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker run</code></h3>
+                        <p>
+                            Para manter o <em>container</em> rodando, você pode:
+                        </p>
+                        <p>
+                            1. Executar <code>bash</code> e informar os parâmetros <code>-i</code> para ler as entradas
+                            do <code>STDIN</code> e <code>-t</code> para alocar um pseudo-<code>tty</code> <em>(basicamente,
+                            um terminal)</em>
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker run -it debian bash
+                            root@95de56b6ad3a:/#
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/run/" class="reference"
+                           target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker run</code></h3>
+                        <p>
+                            Para manter o <em>container</em> rodando, você pode:
+                        </p>
+                        <p>
+                            2. Executar <code>tail -f /dev/null</code> passando o parâmetro <code>-d</code>, que irá
+                            executar o <em>container</em> em segundo plano e imprimir o ID criado
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker run -dt debian tail -f /dev/null
+                            4c5a4daf08e6ea1d9f80f8a95c52e0920b635e1497b906ec2f0f9fde36d45935
+
+                            $ docker ps
+                            CONTAINER ID   IMAGE     COMMAND               CREATED         STATUS         PORTS     NAMES
+                            4c5a4daf08e6   debian    "tail -f /dev/null"   4 seconds ago   Up 2 seconds             unruffled_yalow
+
+                            $ docker exec -it unruffled_yalow bash
+                            root@4c5a4daf08e6:/#
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/run/" class="reference"
+                           target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker run</code></h3>
+                        <p>
+                            Para manter o <em>container</em> rodando, você pode:
+                        </p>
+                        <p>
+                            3. Executar <code>sleep infinity</code> passando o parâmetro <code>-d</code>, que irá
+                            executar o <em>container</em> em segundo plano e imprimir o ID criado <em>(método
+                            recomendado)</em>
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker run -d --name meu-container debian sleep infinity
+                            d27d85ce24d64a684468fc6b34a8c97c0f95b66a112a96e0ae5b5a0d9dcbfacb
+
+                            $ docker ps
+                            CONTAINER ID   IMAGE     COMMAND            CREATED         STATUS         PORTS     NAMES
+                            d27d85ce24d6   debian    "sleep infinity"   16 minutes ago  Up 16 minutes            meu-container
+
+                            $ docker exec -it meu-container bash
+                            root@d27d85ce24d6:/#
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/run/" class="reference"
+                           target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker run</code></h3>
+                        <h4>Nome</h4>
+                        <p>
+                            Cada vez que um <em>container</em> é criado, o Docker irá gerar um nome aleatório para ele
+                            <em>(exemplo: <code>frosty_nightingale</code>)</em>
+                        </p>
+                        <p>
+                            Para definir o nome do seu <em>container</em>, informe o parâmetro <code>--name</code>:
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker run --name meu-nome hello-world
+
+                            Hello from Docker!
+                            This message shows that your installation appears to be working correctly.
+
+                            ...
+
+                            $ docker ps -a
+                            CONTAINER ID   IMAGE          COMMAND     CREATED             STATUS                         PORTS      NAMES
+                            53eb65021715   hello-world    "/hello"    19 seconds ago      Exited (0) 19 seconds ago                 meu-nome
+                        </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker run</code></h3>
+                        <h4>Volumes</h4>
+                        <p>
+                            Para disponibilizar um arquivo ou diretório dentro do <em>container</em>, devemos montar um
+                            volume informando o parâmetro <code>--volume</code> (ou <code>-v</code>)
+                        </p>
+                        <p>
+                            Esse argumento recebe basicamente dois argumentos separados por um dois-pontos: o diretório
+                            no <em>host</em> que você deseja montar e o caminho no <em>container</em> em que ele será
+                            disponibilizado
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker run</code></h3>
+                        <h4>Volumes</h4>
+                        <p>
+                            Para montar a pasta pessoal de seu usuário em um diretório <code>/app</code> no
+                            <em>container</em>, você pode executar:
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker run -it -v ~/:/app debian bash
+                            root@abb014aeb5ae:/# ls -l /app
+                            total 760140
+                            drwxr-xr-x  2 1000 1000      4096 Jun 16  2021  Audio
+                            drwxr-xr-x  2 1000 1000      4096 Jun 16  2021  Desktop
+                            ...
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/run/#mount-volume--v---read-only"
+                           class="reference" target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker run</code></h3>
+                        <h4>Portas</h4>
+                        <p>
+                            Se seu <em>container</em> possui um serviço que escuta alguma porta, você deve utilizar o
+                            parâmetro <code>--expose</code> (ou <code>-p</code>) para mapear aquela porta para uma em
+                            sua própria máquina
+                        </p>
+                        <p>
+                            Para mapear a porta 80 do <em>container</em> à 8080 da sua máquina, execute:
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker run -d -p 8080:80 nginx:alpine
+                        </code></pre>
+                        <p class="small">
+                            Sem esse mapeamento, você só conseguiria acessar esse serviço pelo IP interno do
+                            <em>container</em>, que pode ser descoberto com
+                            <code>docker inspect &lt;nome-do-container&gt;</code>
+                        </p>
+                        <a href="https://docs.docker.com/engine/reference/commandline/run/#publish-or-expose-port--p---expose"
+                           class="reference" target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section> <!-- run -->
+
+                    <section> <!-- start -->
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker start</code></h3>
+                        <p>
+                            Inicializa o <em>container</em> especificado, executando o mesmo comando com que ele foi criado
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker ps -a
+                            CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                      PORTS     NAMES
+                            cd954dec23d0   hello-world   "/hello"   11 minutes ago   Exited (0) 11 minutes ago             helloworld
+
+                            $ docker start -i helloworld
+
+                            Hello from Docker!
+                            This message shows that your installation appears to be working correctly.
+
+                            ...
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/start/" class="reference"
+                           target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section> <!-- start -->
+
+                    <section> <!-- stop -->
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker stop</code></h3>
+                        <p>
+                            Para o <em>container</em> especificado, primeiro enviando o sinal <code>SIGTERM</code> para que
+                            ele possa finalizar seu processamento atual e, após 10 segundos, um sinal <code>SIGKILL</code>
+                            para forçar a parada
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker ps
+                            CONTAINER ID   IMAGE     COMMAND            CREATED         STATUS        PORTS     NAMES
+                            0808f1377a11   debian    "sleep infinity"   16 minutes ago  Up 16 minutes            meu-container
+
+                            $ docker stop -t 1 meu-container
+                            meu-container
+
+                            $ docker ps
+                            CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/stop/" class="reference"
+                           target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a> <span class="text-muted">&bull;</span>
+                        <a href="https://www.man7.org/linux/man-pages/man7/signal.7.html" class="reference"
+                           target="_blank" rel="noopener">
+                            signal(7) — Linux manual page
+                        </a>
+                    </section> <!-- stop -->
+
+                    <section> <!-- restart -->
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker restart</code></h3>
+                        <p>
+                            Atalho que executa o <code>docker stop</code> e o <code>docker start</code> em sequência
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker ps
+                            CONTAINER ID   IMAGE     COMMAND            CREATED         STATUS        PORTS     NAMES
+                            0808f1377a11   debian    "sleep infinity"   17 minutes ago  Up 17 minutes           meu-container
+
+                            $ docker restart -t 1 meu-container
+                            meu-container
+
+                            $ docker ps
+                            CONTAINER ID   IMAGE     COMMAND            CREATED          STATUS        PORTS     NAMES
+                            0808f1377a11   debian    "sleep infinity"   17 minutes ago   Up 1 second             meu-container
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/restart/" class="reference"
+                           target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section> <!-- restart -->
+
+                    <section> <!-- rm -->
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker rm</code></h3>
+                        <p>
+                            Remove um ou mais <em>containers</em>, opcionalmente forçando a parada se especificado o
+                            parâmetro <code>-f</code> e também seus volumes ao passar <code>-v</code>
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker rm meu-container
+                            Error response from daemon: You cannot remove a running container 0808f1377a11b7a9287593eb0e3319ff69b81b7c9be2ab1f6ed312131ea3cffa. Stop the container before attempting removal or force remove
+
+                            $ docker rm -fv meu-container
+                            meu-container
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/rm/" class="reference"
+                           target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section> <!-- rm -->
+
+                    <section> <!-- rmi -->
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker rmi</code></h3>
+                        <p>
+                            Remove uma ou mais imagens, opcionalmente forçando a remoção de imagens que estão em uso por
+                            algum <em>container</em> se especificado o parâmetro <code>-f</code>
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker rmi df6a836541d6
+                            Deleted: sha256:df6a836541d6da56a0678c439fbbb514fa443ccf6f9d83f56459320d5a064852
+                            Deleted: sha256:d59ad3ba42d0738624804c0ac1b1240ca6868af8d487806e287336a829b5f702
+                            Deleted: sha256:18d0cbbb1c0799afa06659260338f301157a7cf80748b81840340f910ef951c5
+                            Deleted: sha256:eed0b1938739c1b4457b925121fef64622b3425b38b507760c20c0b3f399685a
+                            Deleted: sha256:6e8d941cebb35ca2e56e7ebb89298b2a5716d838b9fbaee3b7e6d70eef6f2891
+                            Deleted: sha256:3cfa372ac00348475b481d88a0b7647df6a41cd50e16ce43047d40f05b97ada4
+
+                            $ docker rmi debian:latest
+                            Error response from daemon: conflict: unable to remove repository reference "debian:latest" (must force) - container 0808f1377a11 is using its referenced image d2780094a226
+
+                            $ docker rmi -f debian:latest
+                            Untagged: debian:latest
+                            Untagged: debian@sha256:859ea45db307402ee024b153c7a63ad4888eb4751921abbef68679fc73c4c739
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/rmi/" class="reference"
+                           target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section> <!-- rmi -->
+
+                    <section> <!-- exec -->
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker exec</code></h3>
+                        <p>
+                            Executa o comando no <em>container</em> especificado, podendo receber também alguns dos
+                            parâmetros do <code>docker run</code>, como <code>-d</code> para rodar em segundo plano,
+                            <code>-i</code> para ler as entradas do <code>STDIN</code> e <code>-t</code> para alocar um
+                            pseudo-<code>tty</code>
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker exec meu-container cat /etc/debian_version
+                            11.3
+
+                            $ docker exec -it meu-container bash
+                            root@0808f1377a11:/#
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/exec/" class="reference"
+                           target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section> <!-- exec -->
+                </section> <!-- Principais comandos -->
+
+                <section> <!-- Dockerfile -->
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h2>Dockerfile</h2>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Dockerfile</h2>
+                        <p>
+                            Arquivo com um conjunto de instruções para que o Docker possa fazer o <em>build</em> da
+                            imagem, sendo basicamente composto por:
+                        </p>
+                        <ul>
+                            <li class="fragment">
+                                A imagem base do seu <em>container</em>;
+                                <ul class="small">
+                                    <li>Exemplo: <code>debian:11</code></li>
+                                </ul>
+                            </li>
+                            <li class="fragment">
+                                Os comandos para preparação do ambiente;
+                                <ul class="small">
+                                    <li>Exemplos: instalação de pacotes e configurações do sistema</li>
+                                </ul>
+                            </li>
+                            <li class="fragment">
+                                O comando principal da execução dessa imagem.
+                                <ul class="small">
+                                    <li>Exemplo: <code>npm start</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <a href="https://docs.docker.com/engine/reference/builder/" class="reference fragment"
+                           target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section>
+                    <section>
+                        <h2 class="subtitle">Dockerfile</h2>
+                        <h3>Principais instruções</h3>
+                        <code>FROM &lt;imagem&gt;</code>
+                        <p>Define a imagem que servirá de base para seu ambiente</p>
+                        <p>Exemplos:</p>
+                        <pre><code class="dockerfile" data-trim>
+                            FROM debian:11
+                            # ou
+                            FROM openjdk:20
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2 class="subtitle">Dockerfile</h2>
+                        <h3>Principais instruções</h3>
+                        <code>WORKDIR /pasta/raiz</code>
+                        <p>
+                            Caminho base onde as operações seguintes irão executar, que será automaticamente
+                            criado se não existir
+                        </p>
+                        <p>Exemplos:</p>
+                        <pre><code class="dockerfile" data-trim>
+                            WORKDIR /app
+                            RUN ls # esse comando será executando em /app
+
+                            WORKDIR /etc
+                            RUN ls # esse comando será executando em /etc
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2 class="subtitle">Dockerfile</h2>
+                        <h3>Principais instruções</h3>
+                        <code>COPY &lt;fonte&gt; &lt;destino&gt;</code>
+                        <p>Copia o arquivo (ou a pasta) da <em>fonte</em> para o <em>destino</em></p>
+                        <p>Exemplos:</p>
+                        <pre><code class="dockerfile" data-trim>
+                            COPY . ./
+
+                            COPY arquivo.conf /etc/
+
+                            COPY arquivo1 arquivo2 arquivo3 /destino/
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2 class="subtitle">Dockerfile</h2>
+                        <h3>Principais instruções</h3>
+                        <code>RUN &lt;comando-a-ser-executado&gt;</code>
+                        <p>Comandos de configuração do ambiente</p>
+                        <p>Exemplos:</p>
+                        <pre><code class="dockerfile" data-trim>
+                            RUN apt-get update && apt-get install -y apache2
+
+                            RUN javac HelloWorld.java
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2 class="subtitle">Dockerfile</h2>
+                        <h3>Principais instruções</h3>
+                        <code>EXPOSE &lt;porta&gt;</code>
+                        <p>
+                            Porta(s) que seu <em>container</em> escuta, mas apenas com caráter informativo para
+                            quem está lendo o arquivo, não resultando em ações pelo Docker
+                        </p>
+                        <p>Exemplo:</p>
+                        <pre><code class="dockerfile" data-trim>
+                            EXPOSE 80 443
+                        </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Dockerfile</h2>
+                        <h3>Principais instruções</h3>
+                        <code>CMD [&lt;comando&gt;, &lt;argumento&gt;, &lt;argumento&gt;]</code>
+                        <p data-id="desc">
+                            Comando principal a ser executado ao iniciar o <em>container</em>, só podendo
+                            existir um por <code>Dockerfile</code>. O <code>&lt;comando&gt;</code> pode ser um caminho
+                            para um executável
+                        </p>
+                        <p>Exemplo:</p>
+                        <pre><code class="dockerfile" data-trim>
+                            CMD ["java", "-jar", "Main"]
+                            # ou
+                            CMD /caminho/para/meu/executavel argumento1 argumento2
+                        </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h2 class="subtitle">Dockerfile</h2>
+                        <h3>Principais instruções</h3>
+                        <code>CMD [&lt;argumento-para-o-entrypoint&gt;, &lt;argumento-para-o-entrypoint&gt;]</code>
+                        <p data-id="desc">
+                            Nesse formato, em que o primeiro parâmetro do <code>CMD</code> não é um comando, o Docker
+                            assume que a lista inteira é composta de argumentos que serão passados para o
+                            <em>entrypoint</em> (que veremos a seguir)
+                        </p>
+                        <p>Exemplo:</p>
+                        <pre><code class="dockerfile" data-trim>
+                            CMD ["compile"]
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2 class="subtitle">Dockerfile</h2>
+                        <h3>Principais instruções</h3>
+                        <code>ENTRYPOINT &lt;comando-principal&gt;</code>
+                        <p>
+                            Executável principal que irá receber o comando do <code>CMD</code> ou o informado
+                            pelo <code>docker run</code>
+                        </p>
+                        <p>
+                            O padrão é <code>/bin/sh -c</code>, significando que ao passar um comando
+                            <code>java</code>, por exemplo, será executado <code>/bin/sh -c java</code>
+                        </p>
+                        <p>Exemplo:</p>
+                        <pre><code class="dockerfile" data-trim>
+                            ENTRYPOINT ["/usr/local/bin/meu-entrypoint.sh"]
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Dockerfile</h2>
+                        <p>Exemplo de um <code>Dockerfile</code> simples</p>
+                        <pre><code class="Dockerfile" data-trim>
+                            # Imagem base
+                            FROM openjdk:20
+
+                            # Diretório raiz da aplicação
+                            WORKDIR /app
+
+                            # Copiando o entrypoint para um diretório
+                            COPY entrypoint.sh /usr/bin/
+
+                            # Copiando os arquivos da pasta java/ do host para /app/src no container
+                            COPY java/ ./src
+
+                            # Informando o entrypoint
+                            ENTRYPOINT ["/usr/bin/entrypoint.sh"]
+
+                            # Informando o parâmetro padrão para o entrypoint
+                            CMD ["run"]
+                        </code></pre>
+                    </section>
+                </section> <!-- Dockerfile -->
+
+                <section> <!-- Registry -->
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h2>Registry</h2>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Registry</h2>
+                        <p>
+                            Quando executamos os <em>containers</em>, o Docker primeiro verifica se já temos a imagem
+                            especificada localmente e, se não, ele precisa buscá-la em algum lugar remoto
+                        </p>
+                        <p class="fragment">
+                            Chamamos este local de <em>registry</em>, um repositório que contém o cadastro das imagens
+                            disponíveis
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Registry</h2>
+                        <p>
+                            O repositório oficial de imagens Docker é o
+                            <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>, que é
+                            gratuito para repositórios públicos e possui planos pagos caso você queira hospedar imagens
+                            privadas
+                        </p>
+                        <p>
+                            Também é possível
+                            <a href="https://docs.docker.com/registry/deploying/" target="_blank" rel="noopener">
+                                criar seu próprio <em>registry</em>
+                            </a> como um serviço interno na rede de sua empresa, por exemplo
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Registry</h2>
+                        <p>
+                            Os três principais provedores de <em>Cloud</em> também possuem seus próprios serviços, que
+                            podem ser públicos ou privados:
+                        </p>
+                        <ul>
+                            <li>
+                                <a href="https://aws.amazon.com/pt/ecr/" target="_blank" rel="noopener">
+                                    Amazon Elastic Container Registry
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://cloud.google.com/container-registry/" target="_blank" rel="noopener">
+                                    Google Cloud Container Registry
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://docs.microsoft.com/en-us/azure/container-registry/" target="_blank"
+                                   rel="noopener">
+                                    Azure Container Registry
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </section> <!-- Registry -->
+
+                <section> <!-- Docker Compose -->
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h2>Docker Compose</h2>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Docker Compose</h2>
+                        <p>
+                            Ferramenta utilizada para gerenciar <em>containers</em>, geralmente em cenários que a
+                            aplicação é constituída por sistemas diferentes (como banco de dados e aplicação).
+                        </p>
+                        <a href="https://docs.docker.com/compose/" class="reference" target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Docker Compose</h2>
+                        <p>
+                            Também é útil para configurar políticas de reinicialização caso haja algum erro, facilitar a
+                            montagem de volumes, publicação de portas e dependências entre eles <em>(por exemplo, que o
+                            <em>container</em> de aplicação deve aguardar o de banco de dados ficar disponível antes de
+                            inicializá-la)</em>
+                        </p>
+                        <a href="https://docs.docker.com/compose/" class="reference" target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Docker Compose</h2>
+                        <p>
+                            Apesar de todas essas facilidades, não é recomendado utilizá-lo em ambientes de produção
+                            com necessidades de escala, já que ele foi criado para gerenciar os <em>containers</em> em
+                            uma mesma máquina e também não é possível atualizar ou reinicializar os serviços sem
+                            indisponibilidade para os usuários finais
+                        </p>
+                        <a href="https://docs.docker.com/compose/" class="reference" target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Docker Compose</h2>
+                        <p>
+                            Uma alternativa para gerenciar <em>containers</em> em ambientes com real necessidade de
+                            escala é o
+                            <a href="https://docs.docker.com/engine/swarm/" target="_blank" rel="noopener">
+                                Docker Swarm
+                            </a>, mas o principal serviço para isso é o
+                            <a href="https://kubernetes.io/pt-br/" target="_blank" rel="noopener">
+                                Kubernetes
+                            </a>
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Docker Compose</h2>
+                        <p>
+                            Sua configuração é simples, feita através de um arquivo
+                            <a href="https://docs.docker.com/compose/" target="_blank" rel="noopener">
+                                <code>compose.yaml</code>
+                            </a>, como o do exemplo a seguir, que gerencia dois <em>containers</em>, um com uma
+                            aplicação em Java e outra com um banco de dados MySQL
+                        </p>
+                        <pre><code class="yml" data-trim>
+                            services:
+                              # Aplicação em Java
+                              app:
+                                build:
+                                  context: ./app
+                                working_dir: /app
+                                volumes:
+                                  - ./java:/usr/src/app
+                                env_file:
+                                  - app.env
+                                depends_on:
+                                  - db
+                                ports:
+                                  - "8080:8080"
+
+                              # Banco de Dados
+                              db:
+                                image: mariadb:10.7
+                                volumes:
+                                  - dbVolume:/var/lib/mysql
+                                env_file:
+                                  - db.env
+
+                            volumes:
+                              dbVolume:
+                                driver: local
+                        </code></pre>
+                    </section>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h2>Docker Compose</h2>
+                        <h3>Comandos</h3>
+                        <p>
+                            Os comandos são executados como <code>docker compose [comando]</code> e devem ser executados
+                            dentro da pasta onde o arquivo <code>compose.yaml</code> se encontra
+                        </p>
+                        <p>
+                            Para executar de outra pasta, você pode fornecer o caminho para o <code>.yml</code> com
+                            <code>docker compose -f /caminho/para/o/compose.yaml [comando]</code>
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Docker Compose</h2>
+                        <h3>Comandos</h3>
+                        <p>
+                            A versão 1 do Docker Compose utilizava um utilitário separado, então era preciso executar
+                            <code>docker-compose [comando]</code>, e dava preferência a um arquivo
+                            <code>docker-compose.yml</code>
+                        </p>
+                        <p>
+                            Nesse caso, é recomendado a atualização e instalação da versão 2
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Docker Compose</h2>
+                        <h3>Comandos</h3>
+                        <ul>
+                            <li>
+                                Para verificar o estado dos serviços:<br>
+                                <code>docker compose ps</code>
+                            </li>
+                            <li>
+                                Para inicializar os serviços em segundo plano:<br>
+                                <code>docker compose up -d</code>
+                            </li>
+                            <li>
+                                Para parar os serviços:<br>
+                                <code>docker compose stop</code>
+                            </li>
+                            <li>
+                                Para executar o comando em um serviço:<br>
+                                <code>docker compose exec &lt;nome-do-serviço&gt; &lt;commando&gt;</code>
+                            </li>
+                            <li>
+                                Para acompanhar os logs de um ou todos os serviços:<br>
+                                <code>docker compose logs -f &lt;nome-do-serviço&gt;</code>
+                            </li>
+                        </ul>
+                    </section>
+                </section> <!-- Docker Compose -->
+
+                <section> <!-- Materiais -->
+                    <section>
+                        <h2>Materiais</h2>
+                        <ul>
+                            <li>
+                                <a href="https://docs.docker.com/engine/reference/run/" target="_blank"
+                                   rel="noopener">
+                                    Referência: CLI <code>docker</code>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://docs.docker.com/compose/" target="_blank" rel="noopener">
+                                    Referência: Docker Compose
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://docs.docker.com/language/" target="_blank" rel="noopener">
+                                    Guias específicos para linguagens
+                                </a> <em>(Node.js, Python, Java e Go)</em>
+                            </li>
+                            <li>
+                                <a href="https://docs.docker.com/engine/reference/commandline/push/" target="_blank"
+                                   rel="noopener">
+                                    Referência: Como publicar imagens no <em>registry</em>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+                                   target="_blank" rel="noopener">
+                                    Referência: Best practices for writing Dockerfiles
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://alpinelinux.org/" target="_blank" rel="noopener">
+                                    Distribuições Linux Alpine
+                                </a> <em>(extremamente leves e compactas)</em>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Ferramentas</h2>
+                        <ul>
+                            <li>
+                                <a href="https://kubernetes.io/pt-br/" target="_blank" rel="noopener">
+                                    Kubernetes
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.nomadproject.io/" target="_blank" rel="noopener">
+                                    HashiCorp Nomad
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://aws.amazon.com/pt/fargate/" target="_blank" rel="noopener">
+                                    Amazon Fargate
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://aws.amazon.com/pt/ecs/" target="_blank" rel="noopener">
+                                    Amazon Elastic Container Service
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://aws.amazon.com/pt/eks/" target="_blank" rel="noopener">
+                                    Amazon Elastic Kubernetes Service
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://cloud.google.com/run/" target="_blank" rel="noopener">
+                                    Google Cloud Run
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://docs.microsoft.com/pt-br/azure/container-instances/" target="_blank"
+                                   rel="noopener">
+                                    Azure Container Instances
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </section> <!-- Materiais -->
+
+                <section> <!-- Obrigado -->
+                    <h2 class="text-center">Obrigado!</h2>
+                    <br>
+                    <h4>LET'S CODE</h4>
+                    <div class="d-flex justify-between">
+                        <div class="small text-thin">
+                            Av. Faria Lima, 1306<br>
+                            4&ordm; andar
+                        </div>
+                        <div class="small text-thin text-right">
+                            (11) 2609-3807 <span class="small">&#x1F4DE;</span> <br>
+                            <a href="mailto:contato@letscode.com.br" class="text-black">
+                                contato@letscode.com.br &#9993;
+                            </a>
+                        </div>
+                    </div>
+                </section> <!-- Obrigado -->
+            </div>
+        </div>
+
+        <script src="reveal.js/dist/reveal.js"></script>
+        <script src="reveal.js/plugin/highlight/highlight.js"></script>
+        <script>
+            Reveal.initialize({
+                hash: true,
+                plugins: [RevealHighlight]
+            });
+        </script>
+    </body>
+</html>
