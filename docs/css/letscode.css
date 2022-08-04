@@ -3,19 +3,20 @@
   --r-background-color: #f8f8f7;
   --r-background-color-darker: #f1f0ec;
   --r-main-font-size: 28px;
-  --r-main-font: Montserrat, Helvetica, sans-serif;
-  --r-main-color: #0b1923;
+  --r-main-font: Lexend, Helvetica, sans-serif;
+  --r-main-color: #3a454d;
   --r-subtitle-color: #989da1;
   --r-blockquote-color: #525b62;
-  --r-heading-font: Montserrat, Helvetica, sans-serif;
+  --r-heading-font: Lexend, Helvetica, sans-serif;
   --r-heading-text-transform: none;
   --r-heading-font-weight: 500;
   --r-accent-color: #f5b324;
   --r-heading-color: var(--r-main-color);
   --r-heading-letter-spacing: -1px;
-  --r-link-color: #5995ed;
-  --r-accent-2-color: #ce796b;
-  --r-code-font: Fira Code, monospace;
+  --r-link-color:	#5a189a;
+  --r-link-color-dark: #3c096c;
+  --r-link-color-hover: #7b2cbf;
+  --r-code-font: Roboto Mono, Consolas, Fira Code, monospace;
 }
 .reveal-viewport {
   background: #f8f8f7 linear-gradient(135deg, var(--r-background-color) 0%, var(--r-background-color-darker) 100%);
@@ -24,7 +25,7 @@
   background: center / contain transparent url("../img/bg-white.png") no-repeat;
 }
 .reveal {
-  letter-spacing: var(--r-heading-letter-spacing);
+  font-weight: 300;
 }
 .reveal .backgrounds {
   background: url("../img/footer.png") top right no-repeat;
@@ -63,12 +64,11 @@ a.text-black {
   padding-right: 1.5em;
   border-right: 5px var(--r-accent-color) solid;
 }
-}
 #intro > h1 {
   color: var(--r-main-color);
 }
 #intro > h2 {
-  font-weight: 400;
+  font-weight: 300;
 }
 #profile-pic {
   border-radius: 50%;
@@ -76,13 +76,13 @@ a.text-black {
 
 /* Títulos */
 section > h2:not(.text-center) {
-  padding-left: 0.4em;
+  padding-left: 0.3em;
   border-left: 5px var(--r-accent-color) solid;
 }
 h2.subtitle {
   margin-bottom: 0;
   margin-left: -0.6em;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--r-subtitle-color);
 }
 h2.subtitle + h3 {
@@ -106,12 +106,13 @@ h2.subtitle {
 
 /* Outros */
 code:not(.hljs) {
-  background-color: #f4f2f1;
-  font-size: 0.75em;
+  background-color: #faf8f7;
+  font-size: 0.7em;
   padding: 0.15em 0.3em;
   color: var(--r-accent-color);
   border: 1px #ececea solid;
   border-radius: 2px;
+  letter-spacing: -1px;
 }
 h3 > code:not(.hljs) {
   letter-spacing: -2px;
@@ -131,30 +132,36 @@ a > code:not(.hljs) {
 .reveal ul,
 .reveal ol {
   display: block;
-  margin-bottom: 1em;
+  margin: 0 0 1em 1em;
 }
 .reveal ul,
 .reveal li > ul {
   list-style-type: none;
 }
 .reveal ul > li::before {
-  content: "\25c6";
+  content: "\2023";
   color: var(--r-accent-color);
-  font-size: 0.7em;
+  font-size: 0.9em;
   display: inline-block;
-  margin-left: -1.4em;
-  line-height: 1.7;
+  margin-left: -0.85em;
+  margin-right: -0.2em;
+  line-height: 1.3;
   vertical-align: text-bottom;
+}
+.reveal ul > li > ul > li::before {
+  content: "\2043";
+  font-weight: 900;
+  margin-right: -0.1em;
 }
 ul > li + li {
   margin-top: 0.75em;
 }
 li > ul {
-  font-size: 0.85em;
+  font-size: 0.8em;
 }
 .small {
   font-size: 0.9em;
 }
 .text-thin {
-  font-weight: 300;
+  font-weight: 200;
 }

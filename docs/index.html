@@ -17,8 +17,7 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Montserrat:wght@300;400;500&display=swap"
-              rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/letscode.css">
     </head>
     <body>
@@ -30,42 +29,6 @@
                         <h2>LET'S CODE</h2>
                     </div>
                 </section>
-
-                <section> <!-- Preparação -->
-                    <section>
-                        <h2>Preparação</h2>
-                    </section>
-                    <section>
-                        <h2 class="subtitle">Preparação</h2>
-                        <h3>Acompanhamento do Workshop</h3>
-                        <p>
-                            Clone esse repositório do GitHub para acompanhar os slides e executar os <em>scripts</em>
-                            que serão demonstrados
-                        </p>
-                        <pre><code class="shell" data-trim>
-                            $ git clone --recurse-sobmodules \
-                                git@github.com:vcampitelli/workshop-containers.git
-                        </code></pre>
-                    </section>
-                    <section>
-                        <h2 class="subtitle">Preparação</h2>
-                        <h3>Instalação do Docker</h3>
-                        <ul>
-                            <li>
-                                Instale o Docker de acordo com seu sistema operacional em
-                                <a href="https://docs.docker.com/get-docker/" target="_blank" rel="noopener">
-                                    docs.docker.com/get-docker
-                                </a>
-                            </li>
-                            <li>
-                                Instale o Docker Compose de acordo com seu sistema operacional em
-                                <a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener">
-                                    docs.docker.com/compose/install
-                                </a>
-                            </li>
-                        </ul>
-                    </section>
-                </section> <!-- Preparação -->
 
                 <section> <!-- Sobre mim -->
                     <section data-auto-animate>
@@ -79,8 +42,12 @@
                                 <li>
                                     Membro do <a href="https://phpsp.org.br" target="_blank" rel="noopener">PHPSP</a>
                                 </li>
-                                <li>Entusiasta em cibersegurança</li>
-                                <li>Desenvolvedor há 15 anos</li>
+                                <li>
+                                    Entusiasta em cibersegurança
+                                </li>
+                                <li>
+                                    Desenvolvedor há 15 anos
+                                </li>
                                 <li>
                                     Instrutor na
                                     <a href="https://letscode.com.br" target="_blank" rel="noopener">Let's Code</a>
@@ -130,6 +97,42 @@
                         </div>
                     </section>
                 </section> <!-- Sobre mim -->
+
+                <section> <!-- Preparação -->
+                    <section>
+                        <h2>Preparação</h2>
+                    </section>
+                    <section>
+                        <h2 class="subtitle">Preparação</h2>
+                        <h3>Acompanhamento do Workshop</h3>
+                        <p>
+                            Clone esse repositório do GitHub para acompanhar os slides e executar os <em>scripts</em>
+                            que serão demonstrados
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ git clone --recurse-sobmodules \
+                                git@github.com:vcampitelli/workshop-containers.git
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2 class="subtitle">Preparação</h2>
+                        <h3>Instalação do Docker</h3>
+                        <ul>
+                            <li>
+                                Instale o Docker de acordo com seu sistema operacional em
+                                <a href="https://docs.docker.com/get-docker/" target="_blank" rel="noopener">
+                                    docs.docker.com/get-docker
+                                </a>
+                            </li>
+                            <li>
+                                Instale o Docker Compose de acordo com seu sistema operacional em
+                                <a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener">
+                                    docs.docker.com/compose/install
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </section> <!-- Preparação -->
 
                 <section> <!-- História do desenvolvimento -->
                     <section>
@@ -342,9 +345,9 @@
                         <h3>Containers</h3>
                         <h4>Docker</h4>
                         <p>
-                            É uma plataforma completa para criação e gerenciamento de <em>containers</em> Linux, criando
-                            abstrações dos recursos físicos do <em>hardware</em> para melhor compartilhamento e execução
-                            em ambientes distintos
+                            Lançado em 2013, o Docker é uma plataforma completa para criação e gerenciamento de
+                            <em>containers</em>, criando abstrações dos recursos físicos do <em>hardware</em> para
+                            melhor compartilhamento e execução em ambientes distintos
                         </p>
                     </section>
                     <section data-auto-animate>
@@ -359,9 +362,9 @@
                     </section>
                 </section> <!-- História do desenvolvimento -->
 
-                <section> <!-- Recursos -->
+                <section> <!-- Docker -->
                     <section>
-                        <h2>Recursos</h2>
+                        <h2>Docker</h2>
                     </section>
                     <section> <!-- Uso de recursos -->
                         <h2>Uso de recursos</h2>
@@ -399,7 +402,83 @@
                             docs.docker.com/network
                         </a>
                     </section> <!-- Rede -->
-                </section> <!-- Recursos -->
+                </section> <!-- Docker -->
+
+                <section> <!-- Registry -->
+                    <section>
+                        <h2>Registry</h2>
+                    </section>
+                    <section>
+                        <h2>Registry</h2>
+                        <p>
+                            Repositório que contém as imagens disponíveis para serem executadas
+                        </p>
+                        <p>
+                            Quando criamos um <em>container</em>, especificamos a imagem para execução para que o Docker
+                            possa buscá-la nesse repositório
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Registry</h2>
+                        <p>
+                            O <em>registry</em> oficial de imagens Docker é o
+                            <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>, que é
+                            gratuito para repositórios públicos e possui planos pagos caso você queira hospedar imagens
+                            privadas
+                        </p>
+                        <p>
+                            Existem imagens de Sistemas Operacionais, como
+                            <a href="https://hub.docker.com/_/debian" target="_blank" rel="noopener">Debian</a> e
+                            <a href="https://hub.docker.com/_/ubuntu" target="_blank" rel="noopener">Ubuntu</a>, e das
+                            principais aplicações já instaladas, como
+                            <a href="https://hub.docker.com/_/mysql" target="_blank" rel="noopener">MySQL</a> e
+                            <a href="https://hub.docker.com/_/openjdk" target="_blank" rel="noopener">OpenJDK</a>, que
+                            geralmente possuem versões para Sistemas Operacionais diferentes
+                        </p>
+                        <ul class="small ml-1">
+                            <li>
+                                Exemplo: o
+                                <a href="https://hub.docker.com/_/node" target="_blank" rel="noopener">Node</a>
+                                possui imagens com
+                                <a href="https://alpinelinux.org/" target="_blank" rel="noopener">Alpine Linux</a>,
+                                <a href="https://www.debian.org/releases/bullseye/" target="_blank" rel="noopener">
+                                    Debian Bullseye
+                                </a> ou
+                                <a href="https://www.debian.org/releases/buster/" target="_blank" rel="noopener">
+                                    Buster
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Registry</h2>
+                        <p>
+                            Também é possível
+                            <a href="https://docs.docker.com/registry/deploying/" target="_blank" rel="noopener">
+                                criar seu próprio <em>registry</em>
+                            </a> <em class="small">(por exemplo, na rede de sua empresa)</em> ou usar o serviço do seu
+                            provedor de <em>Cloud</em>, como:
+                        </p>
+                        <ul>
+                            <li>
+                                <a href="https://aws.amazon.com/pt/ecr/" target="_blank" rel="noopener">
+                                    Amazon Elastic Container Registry
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://cloud.google.com/container-registry/" target="_blank" rel="noopener">
+                                    Google Cloud Container Registry
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://docs.microsoft.com/en-us/azure/container-registry/" target="_blank"
+                                   rel="noopener">
+                                    Azure Container Registry
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </section> <!-- Registry -->
 
                 <section> <!-- Principais comandos -->
                     <section>
@@ -453,7 +532,7 @@
                         <h3><code>docker build</code></h3>
                         <p>
                             Cria uma nova imagem a partir das informações provenientes do <code>Dockerfile</code>
-                            <em>(que iremos ver em breve)</em>
+                            <em class="small">(que iremos ver em breve)</em>
                         </p>
                         <pre><code class="shell" data-trim>
                             $ docker build .
@@ -503,6 +582,22 @@
                             docs.docker.com
                         </a>
                     </section> <!-- build -->
+
+                    <section data-auto-animate> <!-- push -->
+                        <h2 class="subtitle">Principais comandos</h2>
+                        <h3><code>docker push</code></h3>
+                        <p>
+                            Envia uma imagem local para um repositório remoto
+                        </p>
+                        <pre><code class="shell" data-trim>
+                            $ docker push usuario/nome:versao                   # Docker Hub
+                            $ docker push endereco.do.repositorio/nome:versao   # Outro repositório
+                        </code></pre>
+                        <a href="https://docs.docker.com/engine/reference/commandline/push/" class="reference"
+                           target="_blank" rel="noopener">
+                            docs.docker.com
+                        </a>
+                    </section>
 
                     <section data-auto-animate data-auto-animate-restart> <!-- run -->
                         <h2 class="subtitle">Principais comandos</h2>
@@ -882,10 +977,10 @@
                 </section> <!-- Principais comandos -->
 
                 <section> <!-- Dockerfile -->
-                    <section data-auto-animate data-auto-animate-restart>
+                    <section>
                         <h2>Dockerfile</h2>
                     </section>
-                    <section data-auto-animate>
+                    <section>
                         <h2>Dockerfile</h2>
                         <p>
                             Arquivo com um conjunto de instruções para que o Docker possa fazer o <em>build</em> da
@@ -893,21 +988,27 @@
                         </p>
                         <ul>
                             <li class="fragment">
-                                A imagem base do seu <em>container</em>;
-                                <ul class="small">
-                                    <li>Exemplo: <code>debian:11</code></li>
+                                A imagem base do seu <em>container</em>
+                                <ul>
+                                    <li>
+                                        Exemplo: <code>debian:11</code>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="fragment">
-                                Os comandos para preparação do ambiente;
-                                <ul class="small">
-                                    <li>Exemplos: instalação de pacotes e configurações do sistema</li>
+                                Os comandos para preparação do ambiente
+                                <ul>
+                                    <li>
+                                        Exemplos: instalação de pacotes e configurações do sistema
+                                    </li>
                                 </ul>
                             </li>
                             <li class="fragment">
-                                O comando principal da execução dessa imagem.
-                                <ul class="small">
-                                    <li>Exemplo: <code>npm start</code></li>
+                                O comando principal da execução dessa imagem
+                                <ul>
+                                    <li>
+                                        Exemplo: <code>npm start</code>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -976,8 +1077,8 @@
                         <h3>Principais instruções</h3>
                         <code>EXPOSE &lt;porta&gt;</code>
                         <p>
-                            Porta(s) que seu <em>container</em> escuta, mas apenas com caráter informativo para
-                            quem está lendo o arquivo, não resultando em ações pelo Docker
+                            Porta(s) que seu <em>container</em> escuta com caráter informativo para quem está lendo o
+                            arquivo, já que não resulta em ações pelo Docker
                         </p>
                         <p>Exemplo:</p>
                         <pre><code class="dockerfile" data-trim>
@@ -990,7 +1091,7 @@
                         <code>CMD [&lt;comando&gt;, &lt;argumento&gt;, &lt;argumento&gt;]</code>
                         <p data-id="desc">
                             Comando principal a ser executado ao iniciar o <em>container</em>, só podendo
-                            existir um por <code>Dockerfile</code>. O <code>&lt;comando&gt;</code> pode ser um caminho
+                            existir um por <code>Dockerfile</code>, onde o <code>&lt;comando&gt;</code> deve ser um caminho
                             para um executável
                         </p>
                         <p>Exemplo:</p>
@@ -1005,9 +1106,9 @@
                         <h3>Principais instruções</h3>
                         <code>CMD [&lt;argumento-para-o-entrypoint&gt;, &lt;argumento-para-o-entrypoint&gt;]</code>
                         <p data-id="desc">
-                            Nesse formato, em que o primeiro parâmetro do <code>CMD</code> não é um comando, o Docker
+                            Nesse formato, em que o primeiro parâmetro do <code>CMD</code> não é um executável, o Docker
                             assume que a lista inteira é composta de argumentos que serão passados para o
-                            <em>entrypoint</em> (que veremos a seguir)
+                            <em>entrypoint <span class="small">(que veremos a seguir)</span></em>
                         </p>
                         <p>Exemplo:</p>
                         <pre><code class="dockerfile" data-trim>
@@ -1056,63 +1157,6 @@
                     </section>
                 </section> <!-- Dockerfile -->
 
-                <section> <!-- Registry -->
-                    <section data-auto-animate data-auto-animate-restart>
-                        <h2>Registry</h2>
-                    </section>
-                    <section data-auto-animate>
-                        <h2>Registry</h2>
-                        <p>
-                            Quando executamos os <em>containers</em>, o Docker primeiro verifica se já temos a imagem
-                            especificada localmente e, se não, ele precisa buscá-la em algum lugar remoto
-                        </p>
-                        <p class="fragment">
-                            Chamamos este local de <em>registry</em>, um repositório que contém o cadastro das imagens
-                            disponíveis
-                        </p>
-                    </section>
-                    <section data-auto-animate>
-                        <h2>Registry</h2>
-                        <p>
-                            O repositório oficial de imagens Docker é o
-                            <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>, que é
-                            gratuito para repositórios públicos e possui planos pagos caso você queira hospedar imagens
-                            privadas
-                        </p>
-                        <p>
-                            Também é possível
-                            <a href="https://docs.docker.com/registry/deploying/" target="_blank" rel="noopener">
-                                criar seu próprio <em>registry</em>
-                            </a> como um serviço interno na rede de sua empresa, por exemplo
-                        </p>
-                    </section>
-                    <section data-auto-animate>
-                        <h2>Registry</h2>
-                        <p>
-                            Os três principais provedores de <em>Cloud</em> também possuem seus próprios serviços, que
-                            podem ser públicos ou privados:
-                        </p>
-                        <ul>
-                            <li>
-                                <a href="https://aws.amazon.com/pt/ecr/" target="_blank" rel="noopener">
-                                    Amazon Elastic Container Registry
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://cloud.google.com/container-registry/" target="_blank" rel="noopener">
-                                    Google Cloud Container Registry
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://docs.microsoft.com/en-us/azure/container-registry/" target="_blank"
-                                   rel="noopener">
-                                    Azure Container Registry
-                                </a>
-                            </li>
-                        </ul>
-                    </section>
-                </section> <!-- Registry -->
-
                 <section> <!-- Docker Compose -->
                     <section data-auto-animate data-auto-animate-restart>
                         <h2>Docker Compose</h2>
@@ -1121,7 +1165,8 @@
                         <h2>Docker Compose</h2>
                         <p>
                             Ferramenta utilizada para gerenciar <em>containers</em>, geralmente em cenários que a
-                            aplicação é constituída por sistemas diferentes (como banco de dados e aplicação).
+                            aplicação é constituída por sistemas diferentes <em class="small">(como banco de dados e
+                            aplicação)</em>
                         </p>
                         <a href="https://docs.docker.com/compose/" class="reference" target="_blank" rel="noopener">
                             docs.docker.com
@@ -1131,9 +1176,9 @@
                         <h2>Docker Compose</h2>
                         <p>
                             Também é útil para configurar políticas de reinicialização caso haja algum erro, facilitar a
-                            montagem de volumes, publicação de portas e dependências entre eles <em>(por exemplo, que o
-                            <em>container</em> de aplicação deve aguardar o de banco de dados ficar disponível antes de
-                            inicializá-la)</em>
+                            montagem de volumes, publicação de portas e dependências entre <em>containers</em>
+                            <em class="small">(por exemplo, que a aplicação deve aguardar o banco de dados ficar
+                                disponível primeiro)</em>
                         </p>
                         <a href="https://docs.docker.com/compose/" class="reference" target="_blank" rel="noopener">
                             docs.docker.com
@@ -1156,9 +1201,8 @@
                         <p>
                             Uma alternativa para gerenciar <em>containers</em> em ambientes com real necessidade de
                             escala é o
-                            <a href="https://docs.docker.com/engine/swarm/" target="_blank" rel="noopener">
-                                Docker Swarm
-                            </a>, mas o principal serviço para isso é o
+                            <a href="https://docs.docker.com/engine/swarm/" target="_blank" rel="noopener">Docker
+                                Swarm</a>, mas o principal serviço para isso é o
                             <a href="https://kubernetes.io/pt-br/" target="_blank" rel="noopener">
                                 Kubernetes
                             </a>
@@ -1167,13 +1211,11 @@
                     <section data-auto-animate>
                         <h2>Docker Compose</h2>
                         <p>
-                            Sua configuração é simples, feita através de um arquivo
-                            <a href="https://docs.docker.com/compose/" target="_blank" rel="noopener">
-                                <code>compose.yaml</code>
-                            </a>, como o do exemplo a seguir, que gerencia dois <em>containers</em>, um com uma
-                            aplicação em Java e outra com um banco de dados MySQL
+                            Sua configuração é feita através de um arquivo <code>compose.yaml</code>, como o do exemplo
+                            a seguir, que gerencia um <em>container</em> com uma aplicação em Java e outro com um
+                            banco de dados MySQL:
                         </p>
-                        <pre><code class="yml" data-trim>
+                        <pre><code class="yml" data-trim style="max-height: 17em">
                             services:
                               # Aplicação em Java
                               app:
@@ -1201,6 +1243,9 @@
                               dbVolume:
                                 driver: local
                         </code></pre>
+                        <a href="https://docs.docker.com/compose/" class="reference" target="_blank" rel="noopener">
+                            docs.docker.com/compose
+                        </a>
                     </section>
                     <section data-auto-animate data-auto-animate-restart>
                         <h2>Docker Compose</h2>
@@ -1209,7 +1254,7 @@
                             Os comandos são executados como <code>docker compose [comando]</code> e devem ser executados
                             dentro da pasta onde o arquivo <code>compose.yaml</code> se encontra
                         </p>
-                        <p>
+                        <p class="small">
                             Para executar de outra pasta, você pode fornecer o caminho para o <code>.yml</code> com
                             <code>docker compose -f /caminho/para/o/compose.yaml [comando]</code>
                         </p>
@@ -1219,7 +1264,7 @@
                         <h3>Comandos</h3>
                         <p>
                             A versão 1 do Docker Compose utilizava um utilitário separado, então era preciso executar
-                            <code>docker-compose [comando]</code>, e dava preferência a um arquivo
+                            <code>docker-compose [comando]</code> e a preferência era por um arquivo
                             <code>docker-compose.yml</code>
                         </p>
                         <p>
@@ -1229,28 +1274,22 @@
                     <section data-auto-animate>
                         <h2>Docker Compose</h2>
                         <h3>Comandos</h3>
-                        <ul>
-                            <li>
-                                Para verificar o estado dos serviços:<br>
-                                <code>docker compose ps</code>
-                            </li>
-                            <li>
-                                Para inicializar os serviços em segundo plano:<br>
-                                <code>docker compose up -d</code>
-                            </li>
-                            <li>
-                                Para parar os serviços:<br>
-                                <code>docker compose stop</code>
-                            </li>
-                            <li>
-                                Para executar o comando em um serviço:<br>
-                                <code>docker compose exec &lt;nome-do-serviço&gt; &lt;commando&gt;</code>
-                            </li>
-                            <li>
-                                Para acompanhar os logs de um ou todos os serviços:<br>
-                                <code>docker compose logs -f &lt;nome-do-serviço&gt;</code>
-                            </li>
-                        </ul>
+                        <pre><code class="shell" data-trim data-noescape>
+                            <span class="hljs-comment">// Para verificar o estado dos serviços</span>
+                            $ docker compose ps
+
+                            <span class="hljs-comment">// Para inicializar os serviços em segundo plano:</span>
+                            $ docker compose up -d
+
+                            <span class="hljs-comment">// Para parar os serviços:</span>
+                            $ docker compose stop
+
+                            <span class="hljs-comment">// Para executar o comando em um serviço:</span>
+                            $ docker compose exec &lt;nome-do-serviço&gt; &lt;commando&gt;
+
+                            <span class="hljs-comment">// Para acompanhar os logs de um ou todos os serviços:</span>
+                            $ docker compose logs -f &lt;nome-do-serviço&gt;
+                        </code></pre>
                     </section>
                 </section> <!-- Docker Compose -->
 

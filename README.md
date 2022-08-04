@@ -1,7 +1,7 @@
 # Workshop de Containerização
 
 Slides e scripts para o workshop de Conteinerização ministrado por
-mim, [Vinícius Campitelli](https://viniciuscampitelli.com) para turmas da [Let's Code](https://letscode.com.br).
+mim, [Vinícius Campitelli](https://viniciuscampitelli.com), para turmas da [Let's Code](https://letscode.com.br).
 
 Para acompanhar o workshop localmente, clone este repositório:
 
