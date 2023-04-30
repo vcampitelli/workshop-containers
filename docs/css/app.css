@@ -1,0 +1,235 @@
+#default {
+  --r-main-font-size: 32px;
+  --r-main-font: Nunito, Helvetica, sans-serif;
+  --r-heading-font: Nunito, Helvetica, sans-serif;
+  --r-code-font: Fira Code, monospace;
+}
+
+/* Tema */
+:root {
+  --r-background-color: #f1e4e8;
+  --r-background-color-darker: #e1d4d8;
+  --r-main-font-size: 30px;
+  --r-main-font: PT Sans, Helvetica, sans-serif;
+  --r-main-color: #3a454d;
+  --r-subtitle-color: #989da1;
+  --r-blockquote-color: #525b62;
+  --r-heading-font: PT Sans, Helvetica, sans-serif;
+  --r-heading-text-transform: none;
+  --r-heading-font-weight: 700;
+  --r-accent-color: #a8577e;
+  --r-heading-color: #3b429f;
+  --r-heading-letter-spacing: -2px;
+  --r-link-color:	#3b429f;
+  --r-link-color-dark: #2b328f;
+  --r-link-color-hover: #aa7dce;
+  --r-code-font: Source Code Pro, monospace;
+}
+.reveal-viewport {
+  background: var(--r-background-color) linear-gradient(135deg, var(--r-background-color) 0%, var(--r-background-color-darker) 100%);
+}
+.reveal {
+  font-weight: 300;
+  letter-spacing: -1px;
+}
+.reveal .slides {
+  text-align: left;
+}
+.reveal blockquote {
+  margin-left: 0;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: var(--r-blockquote-color);
+}
+.reveal pre {
+  margin-left: 0;
+  letter-spacing: 0;
+}
+.reveal .controls {
+  color: var(--r-accent-color);
+}
+.d-flex {
+  display: flex;
+}
+.d-flex.half-columns {
+  column-gap: 1em;
+}
+.d-flex.half-columns > div {
+  flex: 50%;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+a.text-black {
+  color: var(--r-main-color);
+}
+
+/* Intro */
+#intro > h2 {
+  color: var(--r-main-color);
+  font-weight: 300;
+  font-size: var(--r-heading3-size);
+}
+
+/* Títulos */
+h2.subtitle {
+  margin-bottom: -10px;
+  font-weight: 400;
+  color: var(--r-subtitle-color);
+  letter-spacing: -1px;
+}
+h2.subtitle + h3 {
+  margin-top: 5px;
+}
+h2.subtitle {
+  font-size: calc(0.5 * var(--r-heading2-size));
+}
+
+/* Sobre mim */
+#about-me {
+  display: grid;
+  grid-template-columns: 230px auto;
+  grid-gap: .75em;
+}
+#about-me > ul {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style-position: inside;
+}
+#profile-pic {
+  margin: 0 auto;
+  max-width: 200px;
+  border-radius: 50%;
+}
+#profile-name {
+  margin: 0;
+  align-self: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  letter-spacing: -1px;
+  text-align: center;
+}
+.about-me-links {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7em;
+}
+.about-me-links > div {
+  display: flex;
+  position: relative;
+}
+.about-me-links > div + div {
+  margin-left: 1rem;
+}
+@media (min-width: 1024px) {
+  .about-me-links > div + div {
+    margin-left: 5rem;
+  }
+}
+.about-me-links > div > svg + div {
+  align-self: center;
+  margin-left: .5rem;
+}
+.about-me-links svg[viewBox] {
+  width: 48px;
+  height: 48px;
+}
+.about-me-links p {
+  margin: 0;
+  line-height: 1;
+}
+.about-me-links p + a {
+  position: static;
+  font-weight: 600;
+}
+.about-me-links p + a:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: "";
+}
+
+/* SVGs */
+svg {
+  letter-spacing: 0;
+}
+.fill {
+  fill: var(--r-accent-color);
+}
+.about-me-links > div:hover .fill {
+  opacity: 0.9;
+}
+.fill-bg {
+  fill: var(--r-background-color);
+}
+
+/* Outros */
+code:not(.hljs) {
+  background-color: var(--r-background-color-darker);
+  font-size: 0.75em;
+  padding: 0.15em 0.4em;
+  color: var(--r-accent-color);
+  border-radius: 3px;
+  letter-spacing: -2px;
+  font-weight: 500;
+}
+h3 > code:not(.hljs) {
+  letter-spacing: -2px;
+  font-weight: 600;
+}
+.shell.hljs > .hljs-meta + .bash {
+  color: #bababa;
+}
+a > code:not(.hljs) {
+  color: var(--r-link-color);
+}
+pre.code-wrapper + kbd {
+  display: block;
+  margin: -10px 0  20px;
+  font-style: italic;
+  font-size: 0.6em;
+  color: #525b62;
+}
+a.reference {
+  font-size: 0.8em;
+}
+a.reference:before {
+  content: "[";
+}
+a.reference:after {
+  content: "]";
+}
+.text-muted {
+  color: var(--r-subtitle-color);
+}
+.reveal ul,
+.reveal ol {
+  display: block;
+  margin: 0 0 1em 1em;
+}
+ul > li + li {
+  margin-top: 0.4em;
+}
+li > ul {
+  font-size: 0.8em;
+}
+.small {
+  font-size: 0.9em;
+}
+.w-100 {
+  width: 100% !important;
+}
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+.mt-0 {
+  margin-top: 0 !important;
+}

@@ -1,0 +1,63 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: ./backend
+    working_dir: /var/www/html
+    env_file: ./backend/.env
+    depends_on:
+      - db
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./backend:/var/www/html
+      - backend-vendor:/var/www/html/vendor
+    networks:
+      - backend
+
+  frontend:
+    build:
+      context: ./frontend
+    working_dir: /app
+    env_file: ./frontend/.env
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - frontend-modules:/app/node_modules
+    networks:
+      - frontend
+
+  db:
+    image: mariadb:10.11
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./mysql:/docker-entrypoint-initdb.d
+    networks:
+      - backend
+    environment:
+      MARIADB_ROOT_PASSWORD: dbp4ssw0rd@phpsp
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:1.24
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - backend
+
+networks:
+  frontend:
+  backend:
+
+volumes:
+  db-data:
+    driver: local
+  backend-vendor:
+    driver: local
+  frontend-modules:
+    driver: local
